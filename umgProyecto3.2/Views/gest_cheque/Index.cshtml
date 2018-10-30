@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PROYECTO_WEB.Models.gest_cheque>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.moneda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asign_cheque_cp.pago_a_orden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gest_cuenta.banco)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.moneda)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.asign_cheque_cp.pago_a_orden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gest_cuenta.banco)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.serie }) |
+            @Html.ActionLink("Details", "Details", new { id=item.serie }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.serie })
+        </td>
+    </tr>
+}
+
+</table>

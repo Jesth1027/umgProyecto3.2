@@ -1,0 +1,19 @@
+﻿@model umgProyecto3._2.Models.usuario
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout_inicio.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <center><h4 style="color:white;">@Html.ValidationSummary()</h4></center>
+
+    @Html.EditorFor(model => model.usuario1, new { htmlAttributes = new { @class = "form-control", @type = "Email", @placeholder = "Usuario" } })
+
+    @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
+
+    <input type="submit" value="login" name="login">
+}
+

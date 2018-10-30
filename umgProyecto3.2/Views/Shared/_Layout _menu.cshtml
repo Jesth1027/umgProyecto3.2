@@ -1,0 +1,495 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>navbar & sidebar</title>
+
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="~/css/style2.css">
+
+</head>
+<body>
+    <div data-component="navbar">
+        <nav class="navbar p-0 fixed-top">
+            <button class="navbar-toggler navbar-toggler-left rounded-0 border-0" type="button" data-toggle="collapse" data-target="#megamenu-dropdown" aria-controls="megamenu-dropdown" aria-expanded="false" aria-label="Toggle navigation"></button>
+
+            <div>
+                <a class="navbar-brand px-1" href="#"><img src="http://kris.agentfire2.com/wp-content/mu-plugins/agentfire-shared-library/img/agentfire.svg" class="d-inline-block mt-1" alt="AgentFire Logo" height="40"></a>
+                <div class="right-links float-right mr-4">
+
+                    <div class="d-inline dropdown rounded-0 mx-3">
+
+                        <div class="dropdown-menu dropdown-menu-right rounded-0 text-center" aria-labelledby="tools">
+
+                        </div>
+                    </div> <!-- /.dropdown -->
+
+                    <div class="d-inline dropdown mr-3">
+
+                        <div class="dropdown-menu dropdown-menu-right rounded-0 pt-0" aria-labelledby="notifications">
+                            <div class="list-group">
+                                <div class="lg">
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                                        <h5 class="mb-1">Real Estate Marketing Automation: 6 Simple Systems</h5>
+                                        <p class="mb-0">17 October 2016 | 9:32 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">How to Generate Seller Leads For $0.88 Using...</h5>
+                                        <p class="mb-0">3 October 2016 | 9:58 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">AgentFire Re-Opens For Business. New Services,...</h5>
+                                        <p class="mb-0">20 September 2016 | 6:28 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">Real Estate Blogging 101: How To Get Better...</h5>
+                                        <p class="mb-0">7 September 2016 | 3:03 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">How To Get More Listings With Strategic...</h5>
+                                        <p class="mb-0">16 August 2016 | 8:26 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">How To Find Strategic Real Estate Partners as...</h5>
+                                        <p class="mb-0">9 August 2016 | 6:44 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">Top 10 Real Estate Marketing Tools</h5>
+                                        <p class="mb-0">2 August 2016 | 10:25 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">The Beginner Guide To Google Adwords For Real...</h5>
+                                        <p class="mb-0">27 July 2016 | 1:15 am</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">The Complete Guide To Hyper-Local SEO For Realtors</h5>
+                                        <p class="mb-0">19 July 2016 | 5:51 pm</p>
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <h5 class="mb-1">How We Took Ed Eakin’s Real Estate Website...</h5>
+                                        <p class="mb-0">11 July 2016 | 6:19 pm</p>
+                                    </a>
+                                </div> <!-- /.lg -->
+                            </div> <!-- /.list group -->
+                        </div> <!-- /.dropdown-menu -->
+                    </div> <!-- /.dropdown -->
+
+                    <div class="d-inline dropdown mr-3">
+
+                        <div class="dropdown-menu dropdown-menu-right rounded-0 text-center" aria-labelledby="messages">
+                            <a class="dropdown-item">There are no new messages</a>
+                        </div> <!-- /.dropdown-menu -->
+                    </div> <!-- /.dropdown -->
+
+
+                    <div class="d-inline dropdown">
+                        <a class="dropdown-toggle" id="messages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                            <img src="~/images/1.jpg">
+                        </a>
+                        <a>
+                            <style =color: FF0000>
+                            </style> @Session["nombre"]
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="messages">
+
+
+                        </div> <!-- /.dropdown-menu -->
+                    </div> <!-- /.dropdown -->
+
+                </div> <!-- /.right-links -->
+
+            </div>
+        </nav>
+    </div> <!-- END TOP NAVBAR -->
+
+
+
+
+
+    <div data-component="sidebar">
+        <div class="sidebar">
+            <ul class="list-group flex-column d-inline-block first-menu">
+                <li class="list-group-item pl-3 py-2">
+                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Bancos</span></i></a>
+
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4">
+                            <a href="#">Cheques</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow"></span>
+                                 <li class="list-group-item pl-4">
+                                      @Html.ActionLink("Ingresar cheque", "Create", "gest_cheque")
+                                 </li>
+                                 <li class="list-group-item pl-4">
+                                     @Html.ActionLink("Asignar Cheque", "Create", "asign_cheque_cp")
+                                 </li>
+
+
+                            </ul>
+
+                        </li>
+
+
+
+
+
+
+
+                        <li class="list-group-item pl-4">
+                            <a href="">Cuenta</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:113px;"></span>
+                                <li class="list-group-item pl-4">
+                                    @Html.ActionLink("Añadir Cuenta", "Create", "gest_cuenta")
+
+                                <li class="list-group-item pl-4">
+                                    <a href="#">Saldos</a>
+
+                            </ul>
+
+                        </li>
+
+
+
+
+                        <li class="list-group-item pl-4">
+                            <a href="">Deposito</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:113px;"></span>
+                                <li class="list-group-item pl-4">
+                                    @Html.ActionLink("Asignar deposito", "Create", "despositoes")
+
+<li class="list-group-item pl-4">
+                                    <a href="#">pendiente</a>
+
+                            </ul>
+
+                        </li>
+
+                    </ul> <!-- /.submenu -->
+                </li> <!-- Modulo de Bancos----------------------------------------------------------------------------------------- -->
+
+
+
+
+                <li class="list-group-item pl-3 py-2">
+                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Cuentas Por Cobrar  </span></i></a>
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">Clientes</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow"></span>               
+                                <li class="list-group-item pl-4">
+                                    @Html.ActionLink("Añadir Cliente", "Create", "gest_cliente")
+                                </li>
+
+
+
+                            </ul>
+                        </li> <!-- end Posts -->
+
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">Factura</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:114px;"></span>
+                                <li class="list-group-item pl-4">
+                                    @Html.ActionLink("Agregar  Factura", "Create", "gest_factura")
+                                </li>
+
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+                        </li> <!-- end Blog Assist -->
+
+
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">p</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:166px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">..</a>
+                                </li>
+
+                            </ul>
+                        </li> <!-- end Pages -->
+
+
+
+
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">p</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:377px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...r</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul> <!-- /.submenu -->
+                </li> <!---------------------------------------------- FIN MODULO CUENTAS COBRAR ---------------------------------------------------->
+
+
+
+                <li class="list-group-item pl-3 py-2">
+                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Cuentas <br>por Pagar<br /></span></i></a>
+
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">Proveedores</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow"></span>
+                                <li class="list-group-item pl-4">
+                                    @Html.ActionLink("Agregar  Proveedor", "Create", "gest_proveedor")
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">...</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:114px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...s</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="list-group-item pl-3 py-2">
+                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Clientes</span></i></a>
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">...</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">....</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">...</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:114px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">...</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:166px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">...</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:220px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                               
+                            </ul>
+
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">p</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:272px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">p</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:323px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                               
+                            </ul>
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">p</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:377px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+
+                </li>
+                @* clientes FIN *@
+
+
+
+                <li class="list-group-item pl-3 py-2">
+                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Proveedores</span></i></a>
+                    <ul class="list-group flex-column d-inline-block submenu">
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">p</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">...</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:114px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="list-group-item pl-4">
+                            <a href="#" class="">...</a>
+
+                            <ul class="list-group flex-column d-inline-block sub-submenu">
+                                <span class="arrow" style="top:166px;"></span>
+                                <li class="list-group-item pl-4">
+                                    <a href="#">...</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+
+                </li>
+
+
+            </ul> <!-- /.first-menu -->
+        </div> <!-- /.sidebar -->
+    </div>
+
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

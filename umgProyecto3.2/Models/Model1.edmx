@@ -1,0 +1,1572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="webModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="asign_cheque_cp">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="correlativo" Type="int" />
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="pago_a_orden" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="desposito">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serie" Type="int" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cuenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha_sistema" Type="date" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="gest_cheque">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="ingreso" Type="date" />
+          <Property Name="cuenta" Type="nvarchar" MaxLength="50" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="moneda" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="gest_cliente">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="nit" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="gest_cuenta">
+          <Key>
+            <PropertyRef Name="No_cuenta" />
+          </Key>
+          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="No_cuenta" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="banco" Type="nvarchar" MaxLength="50" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="gest_factura">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha" Type="date" />
+        </EntityType>
+        <EntityType Name="gest_proveedor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+          <Property Name="dirreccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="nit" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="mov_factura_credito">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="id_cliente" Type="int" />
+          <Property Name="cancelado" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="mov_factura_pagos">
+          <Key>
+            <PropertyRef Name="nfactura" />
+          </Key>
+          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="nfactura" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nchar" MaxLength="10" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="empresa" Type="int" />
+          <Property Name="cancelado" Type="nchar" MaxLength="10" />
+          <Property Name="fecha_factura" Type="date" />
+          <Property Name="fecha_ingreso" Type="date" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="mov_trasf_cuenta">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="cuenta_debito" Type="nvarchar" MaxLength="50" />
+          <Property Name="cuenta_destino" Type="nvarchar" MaxLength="50" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="nota_debito_cc">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="serie_factura" Type="int" Nullable="false" />
+          <Property Name="idempresa" Type="int" />
+          <Property Name="pago" Type="nchar" MaxLength="10" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="nota_debito_cp">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="nfactura" Type="int" />
+          <Property Name="idempresa" Type="int" />
+          <Property Name="abono" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="serie_cheque" Type="int" />
+          <Property Name="id_user" Type="int" />
+        </EntityType>
+        <EntityType Name="saldos">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="c_pago" Type="int" />
+          <Property Name="c_venta" Type="int" />
+          <Property Name="c_deposito" Type="int" />
+          <Property Name="c_transferencia" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="puesto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_asign_cheque_cp_gest_cheque">
+          <End Role="gest_cheque" Type="Self.gest_cheque" Multiplicity="1" />
+          <End Role="asign_cheque_cp" Type="Self.asign_cheque_cp" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cheque">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="asign_cheque_cp">
+              <PropertyRef Name="serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_asign_cheque_cp_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="asign_cheque_cp" Type="Self.asign_cheque_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="asign_cheque_cp">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_desposito_gest_cuenta">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="desposito" Type="Self.desposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="desposito">
+              <PropertyRef Name="cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_desposito_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="desposito" Type="Self.desposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="desposito">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gest_cheque_gest_cuenta">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="gest_cheque" Type="Self.gest_cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="gest_cheque">
+              <PropertyRef Name="cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_credito_gest_factura">
+          <End Role="gest_factura" Type="Self.gest_factura" Multiplicity="1" />
+          <End Role="mov_factura_credito" Type="Self.mov_factura_credito" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="gest_factura">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="mov_factura_credito">
+              <PropertyRef Name="serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_credito_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="mov_factura_credito" Type="Self.mov_factura_credito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mov_factura_credito">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_pagos_gest_proveedor1">
+          <End Role="gest_proveedor" Type="Self.gest_proveedor" Multiplicity="0..1" />
+          <End Role="mov_factura_pagos" Type="Self.mov_factura_pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_proveedor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="mov_factura_pagos">
+              <PropertyRef Name="empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_pagos_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="mov_factura_pagos" Type="Self.mov_factura_pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mov_factura_pagos">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_trasf_cuenta_gest_cuenta">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="mov_trasf_cuenta">
+              <PropertyRef Name="cuenta_debito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_trasf_cuenta_gest_cuenta1">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="mov_trasf_cuenta">
+              <PropertyRef Name="cuenta_destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_trasf_cuenta_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mov_trasf_cuenta">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cc_gest_cliente">
+          <End Role="gest_cliente" Type="Self.gest_cliente" Multiplicity="0..1" />
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cliente">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="nota_debito_cc">
+              <PropertyRef Name="idempresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cc_mov_factura_credito">
+          <End Role="mov_factura_credito" Type="Self.mov_factura_credito" Multiplicity="1" />
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mov_factura_credito">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="nota_debito_cc">
+              <PropertyRef Name="serie_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cc_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nota_debito_cc">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_asign_cheque_cp">
+          <End Role="asign_cheque_cp" Type="Self.asign_cheque_cp" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asign_cheque_cp">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="serie_cheque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_gest_proveedor">
+          <End Role="gest_proveedor" Type="Self.gest_proveedor" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_proveedor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="idempresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_mov_factura_pagos">
+          <End Role="mov_factura_pagos" Type="Self.mov_factura_pagos" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mov_factura_pagos">
+              <PropertyRef Name="nfactura" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="nfactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_desposito">
+          <End Role="desposito" Type="Self.desposito" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="desposito">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_deposito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_mov_trasf_cuenta">
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mov_trasf_cuenta">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_transferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_nota_debito_cc">
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nota_debito_cc">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_nota_debito_cp">
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nota_debito_cp">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="asignar_cheque" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correlati" Type="int" Mode="In" />
+          <Parameter Name="serie" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="decimal" Mode="In" />
+          <Parameter Name="fecha" Type="date" Mode="In" />
+          <Parameter Name="pago" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="buscar_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user" Type="nvarchar" Mode="In" />
+          <Parameter Name="pass" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="insert_cheque" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serie" Type="int" Mode="In" />
+          <Parameter Name="ingreso" Type="date" Mode="In" />
+          <Parameter Name="cuenta" Type="nvarchar" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+          <Parameter Name="moneda" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="insert_cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nit" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="codigo" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="insert_cuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="correlativo" Type="int" Mode="In" />
+          <Parameter Name="no_cuenta" Type="nvarchar" Mode="In" />
+          <Parameter Name="banco" Type="varchar" Mode="In" />
+          <Parameter Name="tipo" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="insert_deposito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serie" Type="int" Mode="In" />
+          <Parameter Name="fecha" Type="date" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="cuenta" Type="nvarchar" Mode="In" />
+          <Parameter Name="fechasis" Type="date" Mode="In" />
+          <Parameter Name="user" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insert_factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serie" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="insert_proveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nit" Type="nvarchar" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="codigo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="webModelStoreContainer">
+          <EntitySet Name="asign_cheque_cp" EntityType="Self.asign_cheque_cp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="desposito" EntityType="Self.desposito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gest_cheque" EntityType="Self.gest_cheque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gest_cliente" EntityType="Self.gest_cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gest_cuenta" EntityType="Self.gest_cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gest_factura" EntityType="Self.gest_factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gest_proveedor" EntityType="Self.gest_proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mov_factura_credito" EntityType="Self.mov_factura_credito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mov_factura_pagos" EntityType="Self.mov_factura_pagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mov_trasf_cuenta" EntityType="Self.mov_trasf_cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nota_debito_cc" EntityType="Self.nota_debito_cc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nota_debito_cp" EntityType="Self.nota_debito_cp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="saldos" EntityType="Self.saldos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_asign_cheque_cp_gest_cheque" Association="Self.FK_asign_cheque_cp_gest_cheque">
+            <End Role="gest_cheque" EntitySet="gest_cheque" />
+            <End Role="asign_cheque_cp" EntitySet="asign_cheque_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_asign_cheque_cp_usuario" Association="Self.FK_asign_cheque_cp_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="asign_cheque_cp" EntitySet="asign_cheque_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_desposito_gest_cuenta" Association="Self.FK_desposito_gest_cuenta">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="desposito" EntitySet="desposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_desposito_usuario" Association="Self.FK_desposito_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="desposito" EntitySet="desposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gest_cheque_gest_cuenta" Association="Self.FK_gest_cheque_gest_cuenta">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="gest_cheque" EntitySet="gest_cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_credito_gest_factura" Association="Self.FK_mov_factura_credito_gest_factura">
+            <End Role="gest_factura" EntitySet="gest_factura" />
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_credito_usuario" Association="Self.FK_mov_factura_credito_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_pagos_gest_proveedor1" Association="Self.FK_mov_factura_pagos_gest_proveedor1">
+            <End Role="gest_proveedor" EntitySet="gest_proveedor" />
+            <End Role="mov_factura_pagos" EntitySet="mov_factura_pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_pagos_usuario" Association="Self.FK_mov_factura_pagos_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="mov_factura_pagos" EntitySet="mov_factura_pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_trasf_cuenta_gest_cuenta" Association="Self.FK_mov_trasf_cuenta_gest_cuenta">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_trasf_cuenta_gest_cuenta1" Association="Self.FK_mov_trasf_cuenta_gest_cuenta1">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_trasf_cuenta_usuario" Association="Self.FK_mov_trasf_cuenta_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cc_gest_cliente" Association="Self.FK_nota_debito_cc_gest_cliente">
+            <End Role="gest_cliente" EntitySet="gest_cliente" />
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cc_mov_factura_credito" Association="Self.FK_nota_debito_cc_mov_factura_credito">
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cc_usuario" Association="Self.FK_nota_debito_cc_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_asign_cheque_cp" Association="Self.FK_nota_debito_cp_asign_cheque_cp">
+            <End Role="asign_cheque_cp" EntitySet="asign_cheque_cp" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_gest_proveedor" Association="Self.FK_nota_debito_cp_gest_proveedor">
+            <End Role="gest_proveedor" EntitySet="gest_proveedor" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_mov_factura_pagos" Association="Self.FK_nota_debito_cp_mov_factura_pagos">
+            <End Role="mov_factura_pagos" EntitySet="mov_factura_pagos" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_usuario" Association="Self.FK_nota_debito_cp_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_desposito" Association="Self.FK_saldos_desposito">
+            <End Role="desposito" EntitySet="desposito" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_mov_trasf_cuenta" Association="Self.FK_saldos_mov_trasf_cuenta">
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_nota_debito_cc" Association="Self.FK_saldos_nota_debito_cc">
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_nota_debito_cp" Association="Self.FK_saldos_nota_debito_cp">
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="webModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="asign_cheque_cp">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" />
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="pago_a_orden" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="gest_cheque" Relationship="Self.FK_asign_cheque_cp_gest_cheque" FromRole="asign_cheque_cp" ToRole="gest_cheque" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_asign_cheque_cp_usuario" FromRole="asign_cheque_cp" ToRole="usuario" />
+          <NavigationProperty Name="nota_debito_cp" Relationship="Self.FK_nota_debito_cp_asign_cheque_cp" FromRole="asign_cheque_cp" ToRole="nota_debito_cp" />
+        </EntityType>
+        <EntityType Name="desposito">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serie" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_sistema" Type="DateTime" Precision="0" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="gest_cuenta" Relationship="Self.FK_desposito_gest_cuenta" FromRole="desposito" ToRole="gest_cuenta" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_desposito_usuario" FromRole="desposito" ToRole="usuario" />
+          <NavigationProperty Name="saldos" Relationship="Self.FK_saldos_desposito" FromRole="desposito" ToRole="saldos" />
+        </EntityType>
+        <EntityType Name="gest_cheque">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="ingreso" Type="DateTime" Precision="0" />
+          <Property Name="cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="moneda" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="asign_cheque_cp" Relationship="Self.FK_asign_cheque_cp_gest_cheque" FromRole="gest_cheque" ToRole="asign_cheque_cp" />
+          <NavigationProperty Name="gest_cuenta" Relationship="Self.FK_gest_cheque_gest_cuenta" FromRole="gest_cheque" ToRole="gest_cuenta" />
+        </EntityType>
+        <EntityType Name="gest_cliente">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="nit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="nota_debito_cc" Relationship="Self.FK_nota_debito_cc_gest_cliente" FromRole="gest_cliente" ToRole="nota_debito_cc" />
+        </EntityType>
+        <EntityType Name="gest_cuenta">
+          <Key>
+            <PropertyRef Name="No_cuenta" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
+          <Property Name="No_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="banco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="desposito" Relationship="Self.FK_desposito_gest_cuenta" FromRole="gest_cuenta" ToRole="desposito" />
+          <NavigationProperty Name="gest_cheque" Relationship="Self.FK_gest_cheque_gest_cuenta" FromRole="gest_cuenta" ToRole="gest_cheque" />
+          <NavigationProperty Name="mov_trasf_cuenta" Relationship="Self.FK_mov_trasf_cuenta_gest_cuenta" FromRole="gest_cuenta" ToRole="mov_trasf_cuenta" />
+          <NavigationProperty Name="mov_trasf_cuenta1" Relationship="Self.FK_mov_trasf_cuenta_gest_cuenta1" FromRole="gest_cuenta" ToRole="mov_trasf_cuenta" />
+        </EntityType>
+        <EntityType Name="gest_factura">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="mov_factura_credito" Relationship="Self.FK_mov_factura_credito_gest_factura" FromRole="gest_factura" ToRole="mov_factura_credito" />
+        </EntityType>
+        <EntityType Name="gest_proveedor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dirreccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mov_factura_pagos" Relationship="Self.FK_mov_factura_pagos_gest_proveedor1" FromRole="gest_proveedor" ToRole="mov_factura_pagos" />
+          <NavigationProperty Name="nota_debito_cp" Relationship="Self.FK_nota_debito_cp_gest_proveedor" FromRole="gest_proveedor" ToRole="nota_debito_cp" />
+        </EntityType>
+        <EntityType Name="mov_factura_credito">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="id_cliente" Type="Int32" />
+          <Property Name="cancelado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="gest_factura" Relationship="Self.FK_mov_factura_credito_gest_factura" FromRole="mov_factura_credito" ToRole="gest_factura" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_mov_factura_credito_usuario" FromRole="mov_factura_credito" ToRole="usuario" />
+          <NavigationProperty Name="nota_debito_cc" Relationship="Self.FK_nota_debito_cc_mov_factura_credito" FromRole="mov_factura_credito" ToRole="nota_debito_cc" />
+        </EntityType>
+        <EntityType Name="mov_factura_pagos">
+          <Key>
+            <PropertyRef Name="nfactura" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
+          <Property Name="nfactura" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="empresa" Type="Int32" />
+          <Property Name="cancelado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="fecha_factura" Type="DateTime" Precision="0" />
+          <Property Name="fecha_ingreso" Type="DateTime" Precision="0" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="gest_proveedor" Relationship="Self.FK_mov_factura_pagos_gest_proveedor1" FromRole="mov_factura_pagos" ToRole="gest_proveedor" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_mov_factura_pagos_usuario" FromRole="mov_factura_pagos" ToRole="usuario" />
+          <NavigationProperty Name="nota_debito_cp" Relationship="Self.FK_nota_debito_cp_mov_factura_pagos" FromRole="mov_factura_pagos" ToRole="nota_debito_cp" />
+        </EntityType>
+        <EntityType Name="mov_trasf_cuenta">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
+          <Property Name="cuenta_debito" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cuenta_destino" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="gest_cuenta" Relationship="Self.FK_mov_trasf_cuenta_gest_cuenta" FromRole="mov_trasf_cuenta" ToRole="gest_cuenta" />
+          <NavigationProperty Name="gest_cuenta1" Relationship="Self.FK_mov_trasf_cuenta_gest_cuenta1" FromRole="mov_trasf_cuenta" ToRole="gest_cuenta" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_mov_trasf_cuenta_usuario" FromRole="mov_trasf_cuenta" ToRole="usuario" />
+          <NavigationProperty Name="saldos" Relationship="Self.FK_saldos_mov_trasf_cuenta" FromRole="mov_trasf_cuenta" ToRole="saldos" />
+        </EntityType>
+        <EntityType Name="nota_debito_cc">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="serie_factura" Type="Int32" Nullable="false" />
+          <Property Name="idempresa" Type="Int32" />
+          <Property Name="pago" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="gest_cliente" Relationship="Self.FK_nota_debito_cc_gest_cliente" FromRole="nota_debito_cc" ToRole="gest_cliente" />
+          <NavigationProperty Name="mov_factura_credito" Relationship="Self.FK_nota_debito_cc_mov_factura_credito" FromRole="nota_debito_cc" ToRole="mov_factura_credito" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_nota_debito_cc_usuario" FromRole="nota_debito_cc" ToRole="usuario" />
+          <NavigationProperty Name="saldos" Relationship="Self.FK_saldos_nota_debito_cc" FromRole="nota_debito_cc" ToRole="saldos" />
+        </EntityType>
+        <EntityType Name="nota_debito_cp">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nfactura" Type="Int32" />
+          <Property Name="idempresa" Type="Int32" />
+          <Property Name="abono" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="serie_cheque" Type="Int32" />
+          <Property Name="id_user" Type="Int32" />
+          <NavigationProperty Name="asign_cheque_cp" Relationship="Self.FK_nota_debito_cp_asign_cheque_cp" FromRole="nota_debito_cp" ToRole="asign_cheque_cp" />
+          <NavigationProperty Name="gest_proveedor" Relationship="Self.FK_nota_debito_cp_gest_proveedor" FromRole="nota_debito_cp" ToRole="gest_proveedor" />
+          <NavigationProperty Name="mov_factura_pagos" Relationship="Self.FK_nota_debito_cp_mov_factura_pagos" FromRole="nota_debito_cp" ToRole="mov_factura_pagos" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_nota_debito_cp_usuario" FromRole="nota_debito_cp" ToRole="usuario" />
+          <NavigationProperty Name="saldos" Relationship="Self.FK_saldos_nota_debito_cp" FromRole="nota_debito_cp" ToRole="saldos" />
+        </EntityType>
+        <EntityType Name="saldos">
+          <Key>
+            <PropertyRef Name="correlativo" />
+          </Key>
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
+          <Property Name="c_pago" Type="Int32" />
+          <Property Name="c_venta" Type="Int32" />
+          <Property Name="c_deposito" Type="Int32" />
+          <Property Name="c_transferencia" Type="Int32" />
+          <NavigationProperty Name="desposito" Relationship="Self.FK_saldos_desposito" FromRole="saldos" ToRole="desposito" />
+          <NavigationProperty Name="mov_trasf_cuenta" Relationship="Self.FK_saldos_mov_trasf_cuenta" FromRole="saldos" ToRole="mov_trasf_cuenta" />
+          <NavigationProperty Name="nota_debito_cc" Relationship="Self.FK_saldos_nota_debito_cc" FromRole="saldos" ToRole="nota_debito_cc" />
+          <NavigationProperty Name="nota_debito_cp" Relationship="Self.FK_saldos_nota_debito_cp" FromRole="saldos" ToRole="nota_debito_cp" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="puesto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="asign_cheque_cp" Relationship="Self.FK_asign_cheque_cp_usuario" FromRole="usuario" ToRole="asign_cheque_cp" />
+          <NavigationProperty Name="desposito" Relationship="Self.FK_desposito_usuario" FromRole="usuario" ToRole="desposito" />
+          <NavigationProperty Name="mov_factura_credito" Relationship="Self.FK_mov_factura_credito_usuario" FromRole="usuario" ToRole="mov_factura_credito" />
+          <NavigationProperty Name="mov_factura_pagos" Relationship="Self.FK_mov_factura_pagos_usuario" FromRole="usuario" ToRole="mov_factura_pagos" />
+          <NavigationProperty Name="mov_trasf_cuenta" Relationship="Self.FK_mov_trasf_cuenta_usuario" FromRole="usuario" ToRole="mov_trasf_cuenta" />
+          <NavigationProperty Name="nota_debito_cc" Relationship="Self.FK_nota_debito_cc_usuario" FromRole="usuario" ToRole="nota_debito_cc" />
+          <NavigationProperty Name="nota_debito_cp" Relationship="Self.FK_nota_debito_cp_usuario" FromRole="usuario" ToRole="nota_debito_cp" />
+        </EntityType>
+        <Association Name="FK_asign_cheque_cp_gest_cheque">
+          <End Role="gest_cheque" Type="Self.gest_cheque" Multiplicity="1" />
+          <End Role="asign_cheque_cp" Type="Self.asign_cheque_cp" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cheque">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="asign_cheque_cp">
+              <PropertyRef Name="serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_asign_cheque_cp_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="asign_cheque_cp" Type="Self.asign_cheque_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="asign_cheque_cp">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_asign_cheque_cp">
+          <End Role="asign_cheque_cp" Type="Self.asign_cheque_cp" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asign_cheque_cp">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="serie_cheque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_desposito_gest_cuenta">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="desposito" Type="Self.desposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="desposito">
+              <PropertyRef Name="cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_desposito_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="desposito" Type="Self.desposito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="desposito">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_desposito">
+          <End Role="desposito" Type="Self.desposito" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="desposito">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_deposito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_gest_cheque_gest_cuenta">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="gest_cheque" Type="Self.gest_cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="gest_cheque">
+              <PropertyRef Name="cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cc_gest_cliente">
+          <End Role="gest_cliente" Type="Self.gest_cliente" Multiplicity="0..1" />
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cliente">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="nota_debito_cc">
+              <PropertyRef Name="idempresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_trasf_cuenta_gest_cuenta">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="mov_trasf_cuenta">
+              <PropertyRef Name="cuenta_debito" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_trasf_cuenta_gest_cuenta1">
+          <End Role="gest_cuenta" Type="Self.gest_cuenta" Multiplicity="0..1" />
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cuenta">
+              <PropertyRef Name="No_cuenta" />
+            </Principal>
+            <Dependent Role="mov_trasf_cuenta">
+              <PropertyRef Name="cuenta_destino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_credito_gest_factura">
+          <End Role="gest_factura" Type="Self.gest_factura" Multiplicity="1" />
+          <End Role="mov_factura_credito" Type="Self.mov_factura_credito" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="gest_factura">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="mov_factura_credito">
+              <PropertyRef Name="serie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_pagos_gest_proveedor1">
+          <End Role="gest_proveedor" Type="Self.gest_proveedor" Multiplicity="0..1" />
+          <End Role="mov_factura_pagos" Type="Self.mov_factura_pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_proveedor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="mov_factura_pagos">
+              <PropertyRef Name="empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_gest_proveedor">
+          <End Role="gest_proveedor" Type="Self.gest_proveedor" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_proveedor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="idempresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_credito_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="mov_factura_credito" Type="Self.mov_factura_credito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mov_factura_credito">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cc_mov_factura_credito">
+          <End Role="mov_factura_credito" Type="Self.mov_factura_credito" Multiplicity="1" />
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mov_factura_credito">
+              <PropertyRef Name="serie" />
+            </Principal>
+            <Dependent Role="nota_debito_cc">
+              <PropertyRef Name="serie_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_pagos_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="mov_factura_pagos" Type="Self.mov_factura_pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mov_factura_pagos">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_mov_factura_pagos">
+          <End Role="mov_factura_pagos" Type="Self.mov_factura_pagos" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mov_factura_pagos">
+              <PropertyRef Name="nfactura" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="nfactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_trasf_cuenta_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mov_trasf_cuenta">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_mov_trasf_cuenta">
+          <End Role="mov_trasf_cuenta" Type="Self.mov_trasf_cuenta" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mov_trasf_cuenta">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_transferencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cc_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nota_debito_cc">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_nota_debito_cc">
+          <End Role="nota_debito_cc" Type="Self.nota_debito_cc" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nota_debito_cc">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nota_debito_cp_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="nota_debito_cp">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_saldos_nota_debito_cp">
+          <End Role="nota_debito_cp" Type="Self.nota_debito_cp" Multiplicity="0..1" />
+          <End Role="saldos" Type="Self.saldos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nota_debito_cp">
+              <PropertyRef Name="correlativo" />
+            </Principal>
+            <Dependent Role="saldos">
+              <PropertyRef Name="c_pago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="webEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="asign_cheque_cp" EntityType="Self.asign_cheque_cp" />
+          <EntitySet Name="desposito" EntityType="Self.desposito" />
+          <EntitySet Name="gest_cheque" EntityType="Self.gest_cheque" />
+          <EntitySet Name="gest_cliente" EntityType="Self.gest_cliente" />
+          <EntitySet Name="gest_cuenta" EntityType="Self.gest_cuenta" />
+          <EntitySet Name="gest_factura" EntityType="Self.gest_factura" />
+          <EntitySet Name="gest_proveedor" EntityType="Self.gest_proveedor" />
+          <EntitySet Name="mov_factura_credito" EntityType="Self.mov_factura_credito" />
+          <EntitySet Name="mov_factura_pagos" EntityType="Self.mov_factura_pagos" />
+          <EntitySet Name="mov_trasf_cuenta" EntityType="Self.mov_trasf_cuenta" />
+          <EntitySet Name="nota_debito_cc" EntityType="Self.nota_debito_cc" />
+          <EntitySet Name="nota_debito_cp" EntityType="Self.nota_debito_cp" />
+          <EntitySet Name="saldos" EntityType="Self.saldos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_asign_cheque_cp_gest_cheque" Association="Self.FK_asign_cheque_cp_gest_cheque">
+            <End Role="gest_cheque" EntitySet="gest_cheque" />
+            <End Role="asign_cheque_cp" EntitySet="asign_cheque_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_asign_cheque_cp_usuario" Association="Self.FK_asign_cheque_cp_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="asign_cheque_cp" EntitySet="asign_cheque_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_asign_cheque_cp" Association="Self.FK_nota_debito_cp_asign_cheque_cp">
+            <End Role="asign_cheque_cp" EntitySet="asign_cheque_cp" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_desposito_gest_cuenta" Association="Self.FK_desposito_gest_cuenta">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="desposito" EntitySet="desposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_desposito_usuario" Association="Self.FK_desposito_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="desposito" EntitySet="desposito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_desposito" Association="Self.FK_saldos_desposito">
+            <End Role="desposito" EntitySet="desposito" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_gest_cheque_gest_cuenta" Association="Self.FK_gest_cheque_gest_cuenta">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="gest_cheque" EntitySet="gest_cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cc_gest_cliente" Association="Self.FK_nota_debito_cc_gest_cliente">
+            <End Role="gest_cliente" EntitySet="gest_cliente" />
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_trasf_cuenta_gest_cuenta" Association="Self.FK_mov_trasf_cuenta_gest_cuenta">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_trasf_cuenta_gest_cuenta1" Association="Self.FK_mov_trasf_cuenta_gest_cuenta1">
+            <End Role="gest_cuenta" EntitySet="gest_cuenta" />
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_credito_gest_factura" Association="Self.FK_mov_factura_credito_gest_factura">
+            <End Role="gest_factura" EntitySet="gest_factura" />
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_pagos_gest_proveedor1" Association="Self.FK_mov_factura_pagos_gest_proveedor1">
+            <End Role="gest_proveedor" EntitySet="gest_proveedor" />
+            <End Role="mov_factura_pagos" EntitySet="mov_factura_pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_gest_proveedor" Association="Self.FK_nota_debito_cp_gest_proveedor">
+            <End Role="gest_proveedor" EntitySet="gest_proveedor" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_credito_usuario" Association="Self.FK_mov_factura_credito_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cc_mov_factura_credito" Association="Self.FK_nota_debito_cc_mov_factura_credito">
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_pagos_usuario" Association="Self.FK_mov_factura_pagos_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="mov_factura_pagos" EntitySet="mov_factura_pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_mov_factura_pagos" Association="Self.FK_nota_debito_cp_mov_factura_pagos">
+            <End Role="mov_factura_pagos" EntitySet="mov_factura_pagos" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_trasf_cuenta_usuario" Association="Self.FK_mov_trasf_cuenta_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_mov_trasf_cuenta" Association="Self.FK_saldos_mov_trasf_cuenta">
+            <End Role="mov_trasf_cuenta" EntitySet="mov_trasf_cuenta" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cc_usuario" Association="Self.FK_nota_debito_cc_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_nota_debito_cc" Association="Self.FK_saldos_nota_debito_cc">
+            <End Role="nota_debito_cc" EntitySet="nota_debito_cc" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nota_debito_cp_usuario" Association="Self.FK_nota_debito_cp_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_saldos_nota_debito_cp" Association="Self.FK_saldos_nota_debito_cp">
+            <End Role="nota_debito_cp" EntitySet="nota_debito_cp" />
+            <End Role="saldos" EntitySet="saldos" />
+          </AssociationSet>
+          <FunctionImport Name="asignar_cheque" ReturnType="Collection(Decimal)">
+            <Parameter Name="correlati" Mode="In" Type="Int32" />
+            <Parameter Name="serie" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Decimal" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="pago" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="buscar_user" ReturnType="Collection(webModel.buscar_user_Result)">
+            <Parameter Name="user" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insert_cheque" ReturnType="Collection(Decimal)">
+            <Parameter Name="serie" Mode="In" Type="Int32" />
+            <Parameter Name="ingreso" Mode="In" Type="DateTime" />
+            <Parameter Name="cuenta" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="moneda" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="insert_cliente" ReturnType="Collection(Decimal)">
+            <Parameter Name="nit" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="codigo" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="insert_cuenta" ReturnType="Collection(Decimal)">
+            <Parameter Name="correlativo" Mode="In" Type="Int32" />
+            <Parameter Name="no_cuenta" Mode="In" Type="String" />
+            <Parameter Name="banco" Mode="In" Type="String" />
+            <Parameter Name="tipo" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="insert_deposito" ReturnType="Collection(Decimal)">
+            <Parameter Name="serie" Mode="In" Type="Int32" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="cuenta" Mode="In" Type="String" />
+            <Parameter Name="fechasis" Mode="In" Type="DateTime" />
+            <Parameter Name="user" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insert_factura" ReturnType="Collection(Decimal)">
+            <Parameter Name="serie" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="insert_proveedor" ReturnType="Collection(Decimal)">
+            <Parameter Name="nit" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="telefono" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="codigo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="buscar_user_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="puesto" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="webModelStoreContainer" CdmEntityContainer="webEntities1">
+          <EntitySetMapping Name="asign_cheque_cp">
+            <EntityTypeMapping TypeName="webModel.asign_cheque_cp">
+              <MappingFragment StoreEntitySet="asign_cheque_cp">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="pago_a_orden" ColumnName="pago_a_orden" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="desposito">
+            <EntityTypeMapping TypeName="webModel.desposito">
+              <MappingFragment StoreEntitySet="desposito">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="fecha_sistema" ColumnName="fecha_sistema" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gest_cheque">
+            <EntityTypeMapping TypeName="webModel.gest_cheque">
+              <MappingFragment StoreEntitySet="gest_cheque">
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="ingreso" ColumnName="ingreso" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gest_cliente">
+            <EntityTypeMapping TypeName="webModel.gest_cliente">
+              <MappingFragment StoreEntitySet="gest_cliente">
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gest_cuenta">
+            <EntityTypeMapping TypeName="webModel.gest_cuenta">
+              <MappingFragment StoreEntitySet="gest_cuenta">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="No_cuenta" ColumnName="No_cuenta" />
+                <ScalarProperty Name="banco" ColumnName="banco" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gest_factura">
+            <EntityTypeMapping TypeName="webModel.gest_factura">
+              <MappingFragment StoreEntitySet="gest_factura">
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gest_proveedor">
+            <EntityTypeMapping TypeName="webModel.gest_proveedor">
+              <MappingFragment StoreEntitySet="gest_proveedor">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="dirreccion" ColumnName="dirreccion" />
+                <ScalarProperty Name="nit" ColumnName="nit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mov_factura_credito">
+            <EntityTypeMapping TypeName="webModel.mov_factura_credito">
+              <MappingFragment StoreEntitySet="mov_factura_credito">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="cancelado" ColumnName="cancelado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mov_factura_pagos">
+            <EntityTypeMapping TypeName="webModel.mov_factura_pagos">
+              <MappingFragment StoreEntitySet="mov_factura_pagos">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="nfactura" ColumnName="nfactura" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="empresa" ColumnName="empresa" />
+                <ScalarProperty Name="cancelado" ColumnName="cancelado" />
+                <ScalarProperty Name="fecha_factura" ColumnName="fecha_factura" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mov_trasf_cuenta">
+            <EntityTypeMapping TypeName="webModel.mov_trasf_cuenta">
+              <MappingFragment StoreEntitySet="mov_trasf_cuenta">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="cuenta_debito" ColumnName="cuenta_debito" />
+                <ScalarProperty Name="cuenta_destino" ColumnName="cuenta_destino" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nota_debito_cc">
+            <EntityTypeMapping TypeName="webModel.nota_debito_cc">
+              <MappingFragment StoreEntitySet="nota_debito_cc">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="serie_factura" ColumnName="serie_factura" />
+                <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+                <ScalarProperty Name="pago" ColumnName="pago" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nota_debito_cp">
+            <EntityTypeMapping TypeName="webModel.nota_debito_cp">
+              <MappingFragment StoreEntitySet="nota_debito_cp">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nfactura" ColumnName="nfactura" />
+                <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+                <ScalarProperty Name="abono" ColumnName="abono" />
+                <ScalarProperty Name="serie_cheque" ColumnName="serie_cheque" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="saldos">
+            <EntityTypeMapping TypeName="webModel.saldos">
+              <MappingFragment StoreEntitySet="saldos">
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="c_pago" ColumnName="c_pago" />
+                <ScalarProperty Name="c_venta" ColumnName="c_venta" />
+                <ScalarProperty Name="c_deposito" ColumnName="c_deposito" />
+                <ScalarProperty Name="c_transferencia" ColumnName="c_transferencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="webModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="webModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="asignar_cheque" FunctionName="webModel.Store.asignar_cheque" />
+          <FunctionImportMapping FunctionImportName="buscar_user" FunctionName="webModel.Store.buscar_user">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="webModel.buscar_user_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insert_cheque" FunctionName="webModel.Store.insert_cheque" />
+          <FunctionImportMapping FunctionImportName="insert_cliente" FunctionName="webModel.Store.insert_cliente" />
+          <FunctionImportMapping FunctionImportName="insert_cuenta" FunctionName="webModel.Store.insert_cuenta" />
+          <FunctionImportMapping FunctionImportName="insert_deposito" FunctionName="webModel.Store.insert_deposito" />
+          <FunctionImportMapping FunctionImportName="insert_factura" FunctionName="webModel.Store.insert_factura" />
+          <FunctionImportMapping FunctionImportName="insert_proveedor" FunctionName="webModel.Store.insert_proveedor" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="webModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="webModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="webModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="webModel.Store.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="webModel.Store.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="webModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="webModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

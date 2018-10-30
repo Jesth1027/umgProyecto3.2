@@ -1,0 +1,65 @@
+﻿@model PROYECTO_WEB.Models.gest_cheque
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>gest_cheque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.moneda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moneda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asign_cheque_cp.pago_a_orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asign_cheque_cp.pago_a_orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gest_cuenta.banco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gest_cuenta.banco)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

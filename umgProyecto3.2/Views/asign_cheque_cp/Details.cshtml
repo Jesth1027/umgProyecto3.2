@@ -1,0 +1,67 @@
+﻿@model PROYECTO_WEB.Models.asign_cheque_cp
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>asign_cheque_cp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.correlativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correlativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pago_a_orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pago_a_orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gest_cheque.cuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gest_cheque.cuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.serie }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,59 @@
+﻿@model PROYECTO_WEB.Models.gest_cheque
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>gest_cheque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.moneda)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moneda)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.asign_cheque_cp.pago_a_orden)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asign_cheque_cp.pago_a_orden)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gest_cuenta.banco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gest_cuenta.banco)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.serie }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

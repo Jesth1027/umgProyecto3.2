@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PROYECTO_WEB.Models.desposito>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.serie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_sistema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gest_cuenta.banco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuario.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.serie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_sistema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gest_cuenta.banco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.correlativo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.correlativo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.correlativo })
+        </td>
+    </tr>
+}
+
+</table>

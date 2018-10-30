@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PROYECTO_WEB.Models.asign_cheque_cp>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.correlativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pago_a_orden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gest_cheque.cuenta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuario.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.correlativo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pago_a_orden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gest_cheque.cuenta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.serie }) |
+            @Html.ActionLink("Details", "Details", new { id=item.serie }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.serie })
+        </td>
+    </tr>
+}
+
+</table>

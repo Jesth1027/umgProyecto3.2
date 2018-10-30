@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PROYECTO_WEB.Models.gest_factura>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mov_factura_credito.cancelado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mov_factura_credito.cancelado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.serie }) |
+            @Html.ActionLink("Details", "Details", new { id=item.serie }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.serie })
+        </td>
+    </tr>
+}
+
+</table>
