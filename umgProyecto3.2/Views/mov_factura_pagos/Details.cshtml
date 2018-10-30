@@ -1,0 +1,83 @@
+﻿@model umgProyecto3._2.Models.mov_factura_pagos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mov_factura_pagos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.correlativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correlativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cancelado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cancelado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_factura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gest_proveedor.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gest_proveedor.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.nfactura }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

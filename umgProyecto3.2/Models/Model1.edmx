@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="webModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="webModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="asign_cheque_cp">
           <Key>
             <PropertyRef Name="serie" />
           </Key>
-          <Property Name="correlativo" Type="int" />
+          <Property Name="correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="serie" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="decimal" Precision="18" Scale="0" />
           <Property Name="fecha" Type="date" />
@@ -94,7 +94,7 @@
           <Key>
             <PropertyRef Name="nfactura" />
           </Key>
-          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nfactura" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="nchar" MaxLength="10" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
@@ -150,16 +150,6 @@
           <Property Name="c_venta" Type="int" />
           <Property Name="c_deposito" Type="int" />
           <Property Name="c_transferencia" Type="int" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -448,7 +438,6 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="asignar_cheque" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="correlati" Type="int" Mode="In" />
           <Parameter Name="serie" Type="int" Mode="In" />
           <Parameter Name="cantidad" Type="decimal" Mode="In" />
           <Parameter Name="fecha" Type="date" Mode="In" />
@@ -494,6 +483,16 @@
           <Parameter Name="serie" Type="int" Mode="In" />
           <Parameter Name="estado" Type="varchar" Mode="In" />
           <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="insert_facturacp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nfactura" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="empresa" Type="int" Mode="In" />
+          <Parameter Name="cancelado" Type="nchar" Mode="In" />
+          <Parameter Name="fecha_factura" Type="date" Mode="In" />
+          <Parameter Name="fecha_ingreso" Type="date" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="insert_proveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nit" Type="nvarchar" Mode="In" />
@@ -546,7 +545,6 @@
           <EntitySet Name="nota_debito_cc" EntityType="Self.nota_debito_cc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nota_debito_cp" EntityType="Self.nota_debito_cp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="saldos" EntityType="Self.saldos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_asign_cheque_cp_gest_cheque" Association="Self.FK_asign_cheque_cp_gest_cheque">
             <End Role="gest_cheque" EntitySet="gest_cheque" />
@@ -641,8 +639,7 @@
             <End Role="saldos" EntitySet="saldos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="webModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -650,7 +647,7 @@
           <Key>
             <PropertyRef Name="serie" />
           </Key>
-          <Property Name="correlativo" Type="Int32" />
+          <Property Name="correlativo" Type="Int32" Nullable="false" />
           <Property Name="serie" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
@@ -830,16 +827,6 @@
           <NavigationProperty Name="mov_trasf_cuenta" Relationship="Self.FK_saldos_mov_trasf_cuenta" FromRole="saldos" ToRole="mov_trasf_cuenta" />
           <NavigationProperty Name="nota_debito_cc" Relationship="Self.FK_saldos_nota_debito_cc" FromRole="saldos" ToRole="nota_debito_cc" />
           <NavigationProperty Name="nota_debito_cp" Relationship="Self.FK_saldos_nota_debito_cp" FromRole="saldos" ToRole="nota_debito_cp" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -1148,7 +1135,6 @@
           <EntitySet Name="nota_debito_cc" EntityType="Self.nota_debito_cc" />
           <EntitySet Name="nota_debito_cp" EntityType="Self.nota_debito_cp" />
           <EntitySet Name="saldos" EntityType="Self.saldos" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
           <AssociationSet Name="FK_asign_cheque_cp_gest_cheque" Association="Self.FK_asign_cheque_cp_gest_cheque">
             <End Role="gest_cheque" EntitySet="gest_cheque" />
@@ -1243,7 +1229,6 @@
             <End Role="saldos" EntitySet="saldos" />
           </AssociationSet>
           <FunctionImport Name="asignar_cheque" ReturnType="Collection(Decimal)">
-            <Parameter Name="correlati" Mode="In" Type="Int32" />
             <Parameter Name="serie" Mode="In" Type="Int32" />
             <Parameter Name="cantidad" Mode="In" Type="Decimal" />
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
@@ -1326,6 +1311,16 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="insert_facturacp" ReturnType="Collection(Decimal)">
+            <Parameter Name="nfactura" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="empresa" Mode="In" Type="Int32" />
+            <Parameter Name="cancelado" Mode="In" Type="String" />
+            <Parameter Name="fecha_factura" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_ingreso" Mode="In" Type="DateTime" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="buscar_user_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1499,17 +1494,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="webModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="usuario">
             <EntityTypeMapping TypeName="webModel.usuario">
               <MappingFragment StoreEntitySet="usuario">
@@ -1546,6 +1530,7 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="webModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="webModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="webModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="insert_facturacp" FunctionName="webModel.Store.insert_facturacp" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

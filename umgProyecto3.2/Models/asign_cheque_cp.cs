@@ -20,7 +20,7 @@ namespace umgProyecto3._2.Models
             this.nota_debito_cp = new HashSet<nota_debito_cp>();
         }
     
-        public Nullable<int> correlativo { get; set; }
+        public int correlativo { get; set; }
         public int serie { get; set; }
         public Nullable<decimal> cantidad { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }

@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="webModel.nota_debito_cc" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webModel.nota_debito_cp" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="webModel.saldos" Width="1.5" PointX="10.5" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="webModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webModel.usuario" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
         <AssociationConnector Association="webModel.FK_asign_cheque_cp_gest_cheque" ManuallyRouted="false" />
         <AssociationConnector Association="webModel.FK_asign_cheque_cp_usuario" ManuallyRouted="false" />

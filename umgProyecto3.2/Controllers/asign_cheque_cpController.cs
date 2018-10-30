@@ -40,7 +40,7 @@ namespace PROYECTO_WEB.Controllers
         public ActionResult Create()
         {
             ViewBag.serie = new SelectList(db.gest_cheque, "serie", "cuenta");
-            ViewBag.id_user = new SelectList(db.usuario, "id", "nombre");
+   
             return View();
         }
 
@@ -53,13 +53,16 @@ namespace PROYECTO_WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.asign_cheque_cp.Add(asign_cheque_cp);
+                asign_cheque_cp.id_user = Convert.ToInt32(Session["id"]);
+
+                db.asignar_cheque(asign_cheque_cp.serie, asign_cheque_cp.cantidad, asign_cheque_cp.fecha, asign_cheque_cp.pago_a_orden, asign_cheque_cp.id_user);
+               
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.serie = new SelectList(db.gest_cheque, "serie", "cuenta", asign_cheque_cp.serie);
-            ViewBag.id_user = new SelectList(db.usuario, "id", "nombre", asign_cheque_cp.id_user);
+          
             return View(asign_cheque_cp);
         }
 

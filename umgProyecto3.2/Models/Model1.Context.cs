@@ -40,15 +40,10 @@ namespace umgProyecto3._2.Models
         public virtual DbSet<nota_debito_cc> nota_debito_cc { get; set; }
         public virtual DbSet<nota_debito_cp> nota_debito_cp { get; set; }
         public virtual DbSet<saldos> saldos { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
     
-        public virtual ObjectResult<Nullable<decimal>> asignar_cheque(Nullable<int> correlati, Nullable<int> serie, Nullable<decimal> cantidad, Nullable<System.DateTime> fecha, string pago, Nullable<int> id)
+        public virtual ObjectResult<Nullable<decimal>> asignar_cheque(Nullable<int> serie, Nullable<decimal> cantidad, Nullable<System.DateTime> fecha, string pago, Nullable<int> id)
         {
-            var correlatiParameter = correlati.HasValue ?
-                new ObjectParameter("correlati", correlati) :
-                new ObjectParameter("correlati", typeof(int));
-    
             var serieParameter = serie.HasValue ?
                 new ObjectParameter("serie", serie) :
                 new ObjectParameter("serie", typeof(int));
@@ -69,7 +64,7 @@ namespace umgProyecto3._2.Models
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("asignar_cheque", correlatiParameter, serieParameter, cantidadParameter, fechaParameter, pagoParameter, idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("asignar_cheque", serieParameter, cantidadParameter, fechaParameter, pagoParameter, idParameter);
         }
     
         public virtual ObjectResult<buscar_user_Result> buscar_user(string user, string pass)
@@ -336,6 +331,43 @@ namespace umgProyecto3._2.Models
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> insert_facturacp(Nullable<int> nfactura, string descripcion, Nullable<decimal> total, Nullable<int> empresa, string cancelado, Nullable<System.DateTime> fecha_factura, Nullable<System.DateTime> fecha_ingreso, Nullable<int> id)
+        {
+            var nfacturaParameter = nfactura.HasValue ?
+                new ObjectParameter("nfactura", nfactura) :
+                new ObjectParameter("nfactura", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(decimal));
+    
+            var empresaParameter = empresa.HasValue ?
+                new ObjectParameter("empresa", empresa) :
+                new ObjectParameter("empresa", typeof(int));
+    
+            var canceladoParameter = cancelado != null ?
+                new ObjectParameter("cancelado", cancelado) :
+                new ObjectParameter("cancelado", typeof(string));
+    
+            var fecha_facturaParameter = fecha_factura.HasValue ?
+                new ObjectParameter("fecha_factura", fecha_factura) :
+                new ObjectParameter("fecha_factura", typeof(System.DateTime));
+    
+            var fecha_ingresoParameter = fecha_ingreso.HasValue ?
+                new ObjectParameter("fecha_ingreso", fecha_ingreso) :
+                new ObjectParameter("fecha_ingreso", typeof(System.DateTime));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_facturacp", nfacturaParameter, descripcionParameter, totalParameter, empresaParameter, canceladoParameter, fecha_facturaParameter, fecha_ingresoParameter, idParameter);
         }
     }
 }

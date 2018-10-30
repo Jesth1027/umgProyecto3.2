@@ -163,6 +163,7 @@
     <Compile Include="Controllers\gest_facturaController.cs" />
     <Compile Include="Controllers\gest_proveedorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\mov_factura_pagosController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,9 +223,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\saldos.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuario.cs">
@@ -337,6 +335,11 @@
     <Content Include="Views\usuarios\Details.cshtml" />
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
+    <Content Include="Views\mov_factura_pagos\Create.cshtml" />
+    <Content Include="Views\mov_factura_pagos\Delete.cshtml" />
+    <Content Include="Views\mov_factura_pagos\Details.cshtml" />
+    <Content Include="Views\mov_factura_pagos\Edit.cshtml" />
+    <Content Include="Views\mov_factura_pagos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
