@@ -134,12 +134,8 @@ namespace umgProyecto3._2.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_cliente", nitParameter, nombreParameter, telefonoParameter, direccionParameter, codigoParameter, fechaParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> insert_cuenta(Nullable<int> correlativo, string no_cuenta, string banco, string tipo, Nullable<System.DateTime> fecha)
+        public virtual ObjectResult<Nullable<decimal>> insert_cuenta(string no_cuenta, string banco, string tipo, Nullable<System.DateTime> fecha)
         {
-            var correlativoParameter = correlativo.HasValue ?
-                new ObjectParameter("correlativo", correlativo) :
-                new ObjectParameter("correlativo", typeof(int));
-    
             var no_cuentaParameter = no_cuenta != null ?
                 new ObjectParameter("no_cuenta", no_cuenta) :
                 new ObjectParameter("no_cuenta", typeof(string));
@@ -156,7 +152,7 @@ namespace umgProyecto3._2.Models
                 new ObjectParameter("fecha", fecha) :
                 new ObjectParameter("fecha", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_cuenta", correlativoParameter, no_cuentaParameter, bancoParameter, tipoParameter, fechaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_cuenta", no_cuentaParameter, bancoParameter, tipoParameter, fechaParameter);
         }
     
         public virtual ObjectResult<Nullable<decimal>> insert_deposito(Nullable<int> serie, Nullable<System.DateTime> fecha, Nullable<decimal> total, string cuenta, Nullable<System.DateTime> fechasis, Nullable<int> user)
@@ -368,6 +364,16 @@ namespace umgProyecto3._2.Models
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_facturacp", nfacturaParameter, descripcionParameter, totalParameter, empresaParameter, canceladoParameter, fecha_facturaParameter, fecha_ingresoParameter, idParameter);
+        }
+    
+        public virtual ObjectResult<buscar_codigo_de_cliente_Result> buscar_codigo_de_cliente()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<buscar_codigo_de_cliente_Result>("buscar_codigo_de_cliente");
+        }
+    
+        public virtual ObjectResult<buscar_codigo_de_proveedor_Result> buscar_codigo_de_proveedor()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<buscar_codigo_de_proveedor_Result>("buscar_codigo_de_proveedor");
         }
     }
 }

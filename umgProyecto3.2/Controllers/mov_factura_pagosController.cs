@@ -59,11 +59,12 @@ namespace umgProyecto3._2.Controllers
 
                 string fecha_actual = Hoy.ToString("dd-MM-yyyy");
                 mov_factura_pagos.fecha_ingreso = DateTime.Parse(fecha_actual);
+                mov_factura_pagos.cancelado = "No";
 
                 mov_factura_pagos.id_user = Convert.ToInt32(Session["id"]);
                 db.insert_facturacp(mov_factura_pagos.nfactura, mov_factura_pagos.descripcion, mov_factura_pagos.Total, mov_factura_pagos.empresa, mov_factura_pagos.cancelado, mov_factura_pagos.fecha_factura, mov_factura_pagos.fecha_ingreso, mov_factura_pagos.id_user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.empresa = new SelectList(db.gest_proveedor, "codigo", "nombre", mov_factura_pagos.empresa);

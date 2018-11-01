@@ -49,7 +49,7 @@ namespace PROYECTO_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "correlativo,serie,cantidad,fecha,pago_a_orden,id_user")] asign_cheque_cp asign_cheque_cp)
+        public ActionResult Create([Bind(Include = "serie,cantidad,fecha,pago_a_orden,id_user")] asign_cheque_cp asign_cheque_cp)
         {
             if (ModelState.IsValid)
             {

@@ -46,7 +46,7 @@ namespace PROYECTO_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "correlativo,No_cuenta,banco,tipo")] gest_cuenta cuenta)
+        public ActionResult Create([Bind(Include = ",No_cuenta,banco,tipo")] gest_cuenta cuenta)
 
         {
 
@@ -59,7 +59,7 @@ namespace PROYECTO_WEB.Controllers
             {
 
 
-                db.insert_cuenta(cuenta.correlativo,cuenta.No_cuenta,cuenta.banco,cuenta.tipo,cuenta.fecha);
+                db.insert_cuenta(cuenta.No_cuenta,cuenta.banco,cuenta.tipo,cuenta.fecha);
                 db.SaveChanges();
                 return RedirectToAction("Create");
             }

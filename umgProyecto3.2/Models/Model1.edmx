@@ -23,7 +23,7 @@
           <Property Name="correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="serie" Type="int" />
           <Property Name="fecha" Type="date" />
-          <Property Name="total" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" />
           <Property Name="cuenta" Type="nvarchar" MaxLength="50" />
           <Property Name="fecha_sistema" Type="date" />
           <Property Name="id_user" Type="int" />
@@ -53,7 +53,7 @@
           <Key>
             <PropertyRef Name="No_cuenta" />
           </Key>
-          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="No_cuenta" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="banco" Type="nvarchar" MaxLength="50" />
           <Property Name="tipo" Type="nvarchar" MaxLength="50" />
@@ -96,10 +96,10 @@
           </Key>
           <Property Name="correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nfactura" Type="int" Nullable="false" />
-          <Property Name="descripcion" Type="nchar" MaxLength="10" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" />
           <Property Name="Total" Type="decimal" Precision="18" Scale="0" />
           <Property Name="empresa" Type="int" />
-          <Property Name="cancelado" Type="nchar" MaxLength="10" />
+          <Property Name="cancelado" Type="nvarchar" MaxLength="50" />
           <Property Name="fecha_factura" Type="date" />
           <Property Name="fecha_ingreso" Type="date" />
           <Property Name="id_user" Type="int" />
@@ -444,6 +444,8 @@
           <Parameter Name="pago" Type="nvarchar" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="buscar_codigo_de_cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="buscar_codigo de_cliente" />
+        <Function Name="buscar_codigo_de_proveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="buscar_codigo de_proveedor" />
         <Function Name="buscar_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user" Type="nvarchar" Mode="In" />
           <Parameter Name="pass" Type="nvarchar" Mode="In" />
@@ -465,7 +467,6 @@
           <Parameter Name="fecha" Type="date" Mode="In" />
         </Function>
         <Function Name="insert_cuenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="correlativo" Type="int" Mode="In" />
           <Parameter Name="no_cuenta" Type="nvarchar" Mode="In" />
           <Parameter Name="banco" Type="varchar" Mode="In" />
           <Parameter Name="tipo" Type="nvarchar" Mode="In" />
@@ -489,7 +490,7 @@
           <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="total" Type="decimal" Mode="In" />
           <Parameter Name="empresa" Type="int" Mode="In" />
-          <Parameter Name="cancelado" Type="nchar" Mode="In" />
+          <Parameter Name="cancelado" Type="nvarchar" Mode="In" />
           <Parameter Name="fecha_factura" Type="date" Mode="In" />
           <Parameter Name="fecha_ingreso" Type="date" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
@@ -664,7 +665,7 @@
           <Property Name="correlativo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="serie" Type="Int32" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="total" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fecha_sistema" Type="DateTime" Precision="0" />
           <Property Name="id_user" Type="Int32" />
@@ -753,10 +754,10 @@
           </Key>
           <Property Name="correlativo" Type="Int32" Nullable="false" />
           <Property Name="nfactura" Type="Int32" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Total" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="empresa" Type="Int32" />
-          <Property Name="cancelado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cancelado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="fecha_factura" Type="DateTime" Precision="0" />
           <Property Name="fecha_ingreso" Type="DateTime" Precision="0" />
           <Property Name="id_user" Type="Int32" />
@@ -1255,7 +1256,6 @@
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="insert_cuenta" ReturnType="Collection(Decimal)">
-            <Parameter Name="correlativo" Mode="In" Type="Int32" />
             <Parameter Name="no_cuenta" Mode="In" Type="String" />
             <Parameter Name="banco" Mode="In" Type="String" />
             <Parameter Name="tipo" Mode="In" Type="String" />
@@ -1321,6 +1321,8 @@
             <Parameter Name="fecha_ingreso" Mode="In" Type="DateTime" />
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="buscar_codigo_de_cliente" ReturnType="Collection(webModel.buscar_codigo_de_cliente_Result)" />
+          <FunctionImport Name="buscar_codigo_de_proveedor" ReturnType="Collection(webModel.buscar_codigo_de_proveedor_Result)" />
         </EntityContainer>
         <ComplexType Name="buscar_user_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1328,6 +1330,21 @@
           <Property Type="String" Name="usuario" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="puesto" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="buscar_codigo_de_cliente_Result">
+          <Property Type="String" Name="nit" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="telefono" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="buscar_codigo_de_proveedor_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="dirreccion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nit" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1531,6 +1548,29 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="webModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="webModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="insert_facturacp" FunctionName="webModel.Store.insert_facturacp" />
+          <FunctionImportMapping FunctionImportName="buscar_codigo_de_cliente" FunctionName="webModel.Store.buscar_codigo_de_cliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="webModel.buscar_codigo_de_cliente_Result">
+                <ScalarProperty Name="nit" ColumnName="nit" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="buscar_codigo_de_proveedor" FunctionName="webModel.Store.buscar_codigo_de_proveedor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="webModel.buscar_codigo_de_proveedor_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="dirreccion" ColumnName="dirreccion" />
+                <ScalarProperty Name="nit" ColumnName="nit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

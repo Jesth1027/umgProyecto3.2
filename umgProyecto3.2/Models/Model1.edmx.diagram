@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b39e465b8827460387b88ea811a4fac2" Name="Diagram1">
+      <Diagram DiagramId="b39e465b8827460387b88ea811a4fac2" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="webModel.asign_cheque_cp" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="webModel.desposito" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="webModel.gest_cheque" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />

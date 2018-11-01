@@ -29,7 +29,7 @@ namespace umgProyecto3._2.Controllers
         {
             buscar_user_Result u = db.buscar_user(usuario.usuario1, usuario.password).FirstOrDefault();
 
-
+    
 
 
             if (u == null)//si no existe el usuario

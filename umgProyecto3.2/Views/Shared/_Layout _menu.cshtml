@@ -115,7 +115,7 @@
         <div class="sidebar">
             <ul class="list-group flex-column d-inline-block first-menu">
                 <li class="list-group-item pl-3 py-2">
-                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Bancos</span></i></a>
+                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Bancos<br><br /></span></i></a>
 
                     <ul class="list-group flex-column d-inline-block submenu">
                         <li class="list-group-item pl-4">
@@ -123,12 +123,12 @@
 
                             <ul class="list-group flex-column d-inline-block sub-submenu">
                                 <span class="arrow"></span>
-                                 <li class="list-group-item pl-4">
-                                      @Html.ActionLink("Ingresar cheque", "Create", "gest_cheque")
-                                 </li>
-                                 <li class="list-group-item pl-4">
-                                     @Html.ActionLink("Asignar Cheque", "Create", "asign_cheque_cp")
-                                 </li>
+                                <li class="list-group-item pl-4">
+                                    @Html.ActionLink("Ingresar cheque", "Create", "gest_cheque")
+                                </li>
+                                <li class="list-group-item pl-4">
+                                    @Html.ActionLink("Asignar Cheque", "Create", "asign_cheque_cp")
+                                </li>
 
 
                             </ul>
@@ -167,7 +167,7 @@
                                 <li class="list-group-item pl-4">
                                     @Html.ActionLink("Asignar deposito", "Create", "despositoes")
 
-<li class="list-group-item pl-4">
+                                <li class="list-group-item pl-4">
                                     <a href="#">pendiente</a>
 
                             </ul>
@@ -181,13 +181,13 @@
 
 
                 <li class="list-group-item pl-3 py-2">
-                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Cuentas Por Cobrar  </span></i></a>
+                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Cuentas <br>Por Cobrar<br />  </span></i></a>
                     <ul class="list-group flex-column d-inline-block submenu">
                         <li class="list-group-item pl-4">
                             <a href="#" class="">Clientes</a>
 
                             <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow"></span>               
+                                <span class="arrow"></span>
                                 <li class="list-group-item pl-4">
                                     @Html.ActionLink("Añadir Cliente", "Create", "gest_cliente")
                                 </li>
@@ -275,18 +275,18 @@
                                     @Html.ActionLink("Agregar  Proveedor", "Create", "gest_proveedor")
                                 </li>
                                 <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
+                                    <a href="#">    </a>
                                 </li>
                             </ul>
 
                         </li>
                         <li class="list-group-item pl-4">
-                            <a href="#" class="">...</a>
+                            <a href="#" class="">Factura Para Pagos</a>
 
                             <ul class="list-group flex-column d-inline-block sub-submenu">
                                 <span class="arrow" style="top:114px;"></span>
                                 <li class="list-group-item pl-4">
-                                    <a href="#">...s</a>
+                                    @Html.ActionLink("Ingresar Factura", "Create", "mov_factura_pagos")
                                 </li>
                                 <li class="list-group-item pl-4">
                                     <a href="#">...</a>
@@ -296,186 +296,8 @@
                         </li>
                     </ul>
                 </li>
+                <!---------------------------------------------- FIN MODULO CUENTAS PAGAR ---------------------------------------------------->
 
-                <li class="list-group-item pl-3 py-2">
-                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Clientes</span></i></a>
-                    <ul class="list-group flex-column d-inline-block submenu">
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">...</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">....</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">...</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:114px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">...</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:166px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">...</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:220px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                               
-                            </ul>
-
-
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">p</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:272px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">p</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:323px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                               
-                            </ul>
-
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">p</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:377px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                    </ul>
-
-                </li>
-                @* clientes FIN *@
-
-
-
-                <li class="list-group-item pl-3 py-2">
-                    <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Proveedores</span></i></a>
-                    <ul class="list-group flex-column d-inline-block submenu">
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">p</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">...</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:114px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                        <li class="list-group-item pl-4">
-                            <a href="#" class="">...</a>
-
-                            <ul class="list-group flex-column d-inline-block sub-submenu">
-                                <span class="arrow" style="top:166px;"></span>
-                                <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
-                                </li>
-                            </ul>
-
-                        </li>
-                    </ul>
-
-                </li>
 
 
             </ul> <!-- /.first-menu -->

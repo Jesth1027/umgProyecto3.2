@@ -41,7 +41,7 @@ namespace PROYECTO_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "nit,nombre,telefono,direccion,codigo")] gest_cliente cliente)
+        public ActionResult Create([Bind(Include = "nit,nombre,telefono,direccion")] gest_cliente cliente)
         {
             DateTime Hoy = DateTime.Today;
 
@@ -51,6 +51,9 @@ namespace PROYECTO_WEB.Controllers
             if (ModelState.IsValid)
             {
 
+                buscar_codigo_de_cliente_Result u= db.buscar_codigo_de_cliente ().FirstOrDefault();
+                cliente.codigo = u.codigo+1;
+                
                 db.insert_cliente(cliente.nit, cliente.nombre, cliente.telefono, cliente.direccion, cliente.codigo,cliente.fecha);
              
                 db.SaveChanges();

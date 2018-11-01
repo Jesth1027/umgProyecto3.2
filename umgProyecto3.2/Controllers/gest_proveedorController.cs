@@ -46,10 +46,16 @@ namespace PROYECTO_WEB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codigo,nombre,telefono,dirreccion,nit")] gest_proveedor gest_proveedor)
+        public ActionResult Create([Bind(Include = "nombre,telefono,dirreccion,nit")] gest_proveedor gest_proveedor)
         {
+
+
             if (ModelState.IsValid)
             {
+
+                buscar_codigo_de_proveedor_Result u = db.buscar_codigo_de_proveedor().FirstOrDefault();
+                gest_proveedor.codigo = u.codigo + 1;
+
                 db.insert_proveedor(gest_proveedor.nit, gest_proveedor.nombre, gest_proveedor.telefono, gest_proveedor.dirreccion, gest_proveedor.codigo);
                 db.SaveChanges();
                 return RedirectToAction("Create");
