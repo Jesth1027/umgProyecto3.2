@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="webModel.nota_debito_cc" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webModel.nota_debito_cp" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="webModel.saldos" Width="1.5" PointX="10.5" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="webModel.usuario" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="webModel.usuario" Width="1.5" PointX="0.625" PointY="9" IsExpanded="true" />
         <AssociationConnector Association="webModel.FK_asign_cheque_cp_gest_cheque" ManuallyRouted="false" />
         <AssociationConnector Association="webModel.FK_asign_cheque_cp_usuario" ManuallyRouted="false" />
         <AssociationConnector Association="webModel.FK_nota_debito_cp_asign_cheque_cp" ManuallyRouted="false" />
@@ -42,6 +42,8 @@
         <AssociationConnector Association="webModel.FK_saldos_nota_debito_cc" ManuallyRouted="false" />
         <AssociationConnector Association="webModel.FK_nota_debito_cp_usuario" ManuallyRouted="false" />
         <AssociationConnector Association="webModel.FK_saldos_nota_debito_cp" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="webModel.Facturas_Disponibles" Width="1.5" PointX="8.375" PointY="0.75" />
+        <AssociationConnector Association="webModel.FK_mov_factura_credito_gest_cliente1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -41,6 +41,7 @@ namespace umgProyecto3._2.Models
         public virtual DbSet<nota_debito_cp> nota_debito_cp { get; set; }
         public virtual DbSet<saldos> saldos { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<Facturas_Disponibles> Facturas_Disponibles { get; set; }
     
         public virtual ObjectResult<Nullable<decimal>> asignar_cheque(Nullable<int> serie, Nullable<decimal> cantidad, Nullable<System.DateTime> fecha, string pago, Nullable<int> id)
         {
@@ -374,6 +375,44 @@ namespace umgProyecto3._2.Models
         public virtual ObjectResult<buscar_codigo_de_proveedor_Result> buscar_codigo_de_proveedor()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<buscar_codigo_de_proveedor_Result>("buscar_codigo_de_proveedor");
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> insert_facturacc(Nullable<int> serie, Nullable<decimal> total, Nullable<int> id_cliente, string cancelado, Nullable<System.DateTime> fecha, string descripcion, Nullable<int> id)
+        {
+            var serieParameter = serie.HasValue ?
+                new ObjectParameter("serie", serie) :
+                new ObjectParameter("serie", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(decimal));
+    
+            var id_clienteParameter = id_cliente.HasValue ?
+                new ObjectParameter("id_cliente", id_cliente) :
+                new ObjectParameter("id_cliente", typeof(int));
+    
+            var canceladoParameter = cancelado != null ?
+                new ObjectParameter("cancelado", cancelado) :
+                new ObjectParameter("cancelado", typeof(string));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("descripcion", descripcion) :
+                new ObjectParameter("descripcion", typeof(string));
+    
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_facturacc", serieParameter, totalParameter, id_clienteParameter, canceladoParameter, fechaParameter, descripcionParameter, idParameter);
+        }
+    
+        public virtual ObjectResult<buscar_serie_facturacc_Result> buscar_serie_facturacc()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<buscar_serie_facturacc_Result>("buscar_serie_facturacc");
         }
     }
 }

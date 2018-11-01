@@ -163,7 +163,9 @@
     <Compile Include="Controllers\gest_facturaController.cs" />
     <Compile Include="Controllers\gest_proveedorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\mov_factura_creditoController.cs" />
     <Compile Include="Controllers\mov_factura_pagosController.cs" />
+    <Compile Include="Controllers\nota_debito_cpController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,10 +179,16 @@
     <Compile Include="Models\buscar_codigo_de_proveedor_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\buscar_serie_facturacc_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\buscar_user_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\desposito.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Facturas_Disponibles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\gest_cheque.cs">
@@ -346,6 +354,16 @@
     <Content Include="Views\mov_factura_pagos\Details.cshtml" />
     <Content Include="Views\mov_factura_pagos\Edit.cshtml" />
     <Content Include="Views\mov_factura_pagos\Index.cshtml" />
+    <Content Include="Views\mov_factura_credito\Create.cshtml" />
+    <Content Include="Views\mov_factura_credito\Delete.cshtml" />
+    <Content Include="Views\mov_factura_credito\Details.cshtml" />
+    <Content Include="Views\mov_factura_credito\Edit.cshtml" />
+    <Content Include="Views\mov_factura_credito\Index.cshtml" />
+    <Content Include="Views\nota_debito_cp\Create.cshtml" />
+    <Content Include="Views\nota_debito_cp\Delete.cshtml" />
+    <Content Include="Views\nota_debito_cp\Details.cshtml" />
+    <Content Include="Views\nota_debito_cp\Edit.cshtml" />
+    <Content Include="Views\nota_debito_cp\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

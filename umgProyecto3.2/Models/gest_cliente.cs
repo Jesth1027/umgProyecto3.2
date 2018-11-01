@@ -18,6 +18,7 @@ namespace umgProyecto3._2.Models
         public gest_cliente()
         {
             this.nota_debito_cc = new HashSet<nota_debito_cc>();
+            this.mov_factura_credito = new HashSet<mov_factura_credito>();
         }
     
         public string nit { get; set; }
@@ -29,5 +30,7 @@ namespace umgProyecto3._2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<nota_debito_cc> nota_debito_cc { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<mov_factura_credito> mov_factura_credito { get; set; }
     }
 }

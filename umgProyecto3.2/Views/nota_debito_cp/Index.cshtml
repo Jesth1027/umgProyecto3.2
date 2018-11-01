@@ -1,0 +1,70 @@
+﻿@model IEnumerable<umgProyecto3._2.Models.nota_debito_cp>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout _menu.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.abono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.asign_cheque_cp.pago_a_orden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gest_proveedor.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mov_factura_pagos.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usuario.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.abono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.asign_cheque_cp.pago_a_orden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gest_proveedor.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mov_factura_pagos.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.correlativo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.correlativo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.correlativo })
+        </td>
+    </tr>
+}
+
+</table>

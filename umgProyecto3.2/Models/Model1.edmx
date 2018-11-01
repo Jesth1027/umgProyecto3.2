@@ -81,7 +81,7 @@
           <Key>
             <PropertyRef Name="serie" />
           </Key>
-          <Property Name="correlativo" Type="int" Nullable="false" />
+          <Property Name="correlativo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="serie" Type="int" Nullable="false" />
           <Property Name="total" Type="decimal" Precision="18" Scale="0" />
           <Property Name="id_cliente" Type="int" />
@@ -161,6 +161,15 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="puesto" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'web.dbo.Facturas Disponibles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Facturas Disponibles">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="serie" Type="int" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_asign_cheque_cp_gest_cheque">
           <End Role="gest_cheque" Type="Self.gest_cheque" Multiplicity="1" />
           <End Role="asign_cheque_cp" Type="Self.asign_cheque_cp" Multiplicity="0..1" />
@@ -218,6 +227,18 @@
             </Principal>
             <Dependent Role="gest_cheque">
               <PropertyRef Name="cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mov_factura_credito_gest_cliente1">
+          <End Role="gest_cliente" Type="Self.gest_cliente" Multiplicity="0..1" />
+          <End Role="mov_factura_credito" Type="Self.mov_factura_credito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cliente">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="mov_factura_credito">
+              <PropertyRef Name="id_cliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -446,6 +467,7 @@
         </Function>
         <Function Name="buscar_codigo_de_cliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="buscar_codigo de_cliente" />
         <Function Name="buscar_codigo_de_proveedor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="buscar_codigo de_proveedor" />
+        <Function Name="buscar_serie_facturacc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="buscar_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user" Type="nvarchar" Mode="In" />
           <Parameter Name="pass" Type="nvarchar" Mode="In" />
@@ -484,6 +506,15 @@
           <Parameter Name="serie" Type="int" Mode="In" />
           <Parameter Name="estado" Type="varchar" Mode="In" />
           <Parameter Name="fecha" Type="date" Mode="In" />
+        </Function>
+        <Function Name="insert_facturacc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="serie" Type="int" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="id_cliente" Type="int" Mode="In" />
+          <Parameter Name="cancelado" Type="nvarchar" Mode="In" />
+          <Parameter Name="fecha" Type="date" Mode="In" />
+          <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="insert_facturacp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nfactura" Type="int" Mode="In" />
@@ -547,6 +578,12 @@
           <EntitySet Name="nota_debito_cp" EntityType="Self.nota_debito_cp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="saldos" EntityType="Self.saldos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas Disponibles" EntityType="Self.Facturas Disponibles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Facturas Disponibles].[serie] AS [serie], 
+    [Facturas Disponibles].[estado] AS [estado]
+    FROM [dbo].[Facturas Disponibles] AS [Facturas Disponibles]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_asign_cheque_cp_gest_cheque" Association="Self.FK_asign_cheque_cp_gest_cheque">
             <End Role="gest_cheque" EntitySet="gest_cheque" />
             <End Role="asign_cheque_cp" EntitySet="asign_cheque_cp" />
@@ -566,6 +603,10 @@
           <AssociationSet Name="FK_gest_cheque_gest_cuenta" Association="Self.FK_gest_cheque_gest_cuenta">
             <End Role="gest_cuenta" EntitySet="gest_cuenta" />
             <End Role="gest_cheque" EntitySet="gest_cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mov_factura_credito_gest_cliente1" Association="Self.FK_mov_factura_credito_gest_cliente1">
+            <End Role="gest_cliente" EntitySet="gest_cliente" />
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
           </AssociationSet>
           <AssociationSet Name="FK_mov_factura_credito_gest_factura" Association="Self.FK_mov_factura_credito_gest_factura">
             <End Role="gest_factura" EntitySet="gest_factura" />
@@ -696,6 +737,7 @@
           <Property Name="codigo" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <NavigationProperty Name="nota_debito_cc" Relationship="Self.FK_nota_debito_cc_gest_cliente" FromRole="gest_cliente" ToRole="nota_debito_cc" />
+          <NavigationProperty Name="mov_factura_credito" Relationship="webModel.FK_mov_factura_credito_gest_cliente1" FromRole="gest_cliente" ToRole="mov_factura_credito" />
         </EntityType>
         <EntityType Name="gest_cuenta">
           <Key>
@@ -747,6 +789,7 @@
           <NavigationProperty Name="gest_factura" Relationship="Self.FK_mov_factura_credito_gest_factura" FromRole="mov_factura_credito" ToRole="gest_factura" />
           <NavigationProperty Name="usuario" Relationship="Self.FK_mov_factura_credito_usuario" FromRole="mov_factura_credito" ToRole="usuario" />
           <NavigationProperty Name="nota_debito_cc" Relationship="Self.FK_nota_debito_cc_mov_factura_credito" FromRole="mov_factura_credito" ToRole="nota_debito_cc" />
+          <NavigationProperty Name="gest_cliente" Relationship="webModel.FK_mov_factura_credito_gest_cliente1" FromRole="mov_factura_credito" ToRole="gest_cliente" />
         </EntityType>
         <EntityType Name="mov_factura_pagos">
           <Key>
@@ -1323,6 +1366,21 @@
           </FunctionImport>
           <FunctionImport Name="buscar_codigo_de_cliente" ReturnType="Collection(webModel.buscar_codigo_de_cliente_Result)" />
           <FunctionImport Name="buscar_codigo_de_proveedor" ReturnType="Collection(webModel.buscar_codigo_de_proveedor_Result)" />
+          <FunctionImport Name="insert_facturacc" ReturnType="Collection(Decimal)">
+            <Parameter Name="serie" Mode="In" Type="Int32" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+            <Parameter Name="cancelado" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="buscar_serie_facturacc" ReturnType="Collection(webModel.buscar_serie_facturacc_Result)" />
+          <EntitySet Name="Facturas_Disponibles" EntityType="webModel.Facturas_Disponibles" />
+          <AssociationSet Name="FK_mov_factura_credito_gest_cliente1" Association="webModel.FK_mov_factura_credito_gest_cliente1">
+            <End Role="gest_cliente" EntitySet="gest_cliente" />
+            <End Role="mov_factura_credito" EntitySet="mov_factura_credito" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="buscar_user_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
@@ -1346,6 +1404,30 @@
           <Property Type="String" Name="dirreccion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="nit" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="buscar_serie_facturacc_Result">
+          <Property Type="Int32" Name="serie" Nullable="false" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fecha" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Facturas_Disponibles">
+          <Key>
+            <PropertyRef Name="serie" />
+          </Key>
+          <Property Name="serie" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_mov_factura_credito_gest_cliente1">
+          <End Type="webModel.gest_cliente" Role="gest_cliente" Multiplicity="0..1" />
+          <End Type="webModel.mov_factura_credito" Role="mov_factura_credito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gest_cliente">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="mov_factura_credito">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1571,6 +1653,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="insert_facturacc" FunctionName="webModel.Store.insert_facturacc" />
+          <FunctionImportMapping FunctionImportName="buscar_serie_facturacc" FunctionName="webModel.Store.buscar_serie_facturacc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="webModel.buscar_serie_facturacc_Result">
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Facturas_Disponibles">
+            <EntityTypeMapping TypeName="webModel.Facturas_Disponibles">
+              <MappingFragment StoreEntitySet="Facturas Disponibles">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

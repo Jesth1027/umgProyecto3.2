@@ -203,11 +203,11 @@
                             <ul class="list-group flex-column d-inline-block sub-submenu">
                                 <span class="arrow" style="top:114px;"></span>
                                 <li class="list-group-item pl-4">
-                                    @Html.ActionLink("Agregar  Factura", "Create", "gest_factura")
+                                    @Html.ActionLink("Factura en el Sistema", "Create", "gest_factura")
                                 </li>
 
                                 <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
+                                    @Html.ActionLink("Factura por Cobro", "Create", "mov_factura_credito")
                                 </li>
                             </ul>
                         </li> <!-- end Blog Assist -->
@@ -221,6 +221,8 @@
                                 <li class="list-group-item pl-4">
                                     <a href="#">..</a>
                                 </li>
+
+
 
                             </ul>
                         </li> <!-- end Pages -->
@@ -289,7 +291,7 @@
                                     @Html.ActionLink("Ingresar Factura", "Create", "mov_factura_pagos")
                                 </li>
                                 <li class="list-group-item pl-4">
-                                    <a href="#">...</a>
+                                    @Html.ActionLink("Registro de Pago Factura", "Create", "mov_factura_pagos")
                                 </li>
                             </ul>
 
