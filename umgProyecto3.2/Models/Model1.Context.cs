@@ -42,6 +42,8 @@ namespace umgProyecto3._2.Models
         public virtual DbSet<saldos> saldos { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<Facturas_Disponibles> Facturas_Disponibles { get; set; }
+        public virtual DbSet<cheques_disponibles> cheques_disponibles { get; set; }
+        public virtual DbSet<facturas_sin_pagar> facturas_sin_pagar { get; set; }
     
         public virtual ObjectResult<Nullable<decimal>> asignar_cheque(Nullable<int> serie, Nullable<decimal> cantidad, Nullable<System.DateTime> fecha, string pago, Nullable<int> id)
         {
@@ -413,6 +415,40 @@ namespace umgProyecto3._2.Models
         public virtual ObjectResult<buscar_serie_facturacc_Result> buscar_serie_facturacc()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<buscar_serie_facturacc_Result>("buscar_serie_facturacc");
+        }
+    
+        public virtual ObjectResult<buscar_correlativo_notacp_Result> buscar_correlativo_notacp()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<buscar_correlativo_notacp_Result>("buscar_correlativo_notacp");
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> insert_nota_cre(Nullable<int> correlativo, Nullable<System.DateTime> fecha, Nullable<int> nfactrua, Nullable<decimal> abono, Nullable<int> serie_cheque, Nullable<int> id_user)
+        {
+            var correlativoParameter = correlativo.HasValue ?
+                new ObjectParameter("correlativo", correlativo) :
+                new ObjectParameter("correlativo", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            var nfactruaParameter = nfactrua.HasValue ?
+                new ObjectParameter("nfactrua", nfactrua) :
+                new ObjectParameter("nfactrua", typeof(int));
+    
+            var abonoParameter = abono.HasValue ?
+                new ObjectParameter("abono", abono) :
+                new ObjectParameter("abono", typeof(decimal));
+    
+            var serie_chequeParameter = serie_cheque.HasValue ?
+                new ObjectParameter("serie_cheque", serie_cheque) :
+                new ObjectParameter("serie_cheque", typeof(int));
+    
+            var id_userParameter = id_user.HasValue ?
+                new ObjectParameter("id_user", id_user) :
+                new ObjectParameter("id_user", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_nota_cre", correlativoParameter, fechaParameter, nfactruaParameter, abonoParameter, serie_chequeParameter, id_userParameter);
         }
     }
 }

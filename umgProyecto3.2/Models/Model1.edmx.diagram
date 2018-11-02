@@ -44,6 +44,8 @@
         <AssociationConnector Association="webModel.FK_saldos_nota_debito_cp" ManuallyRouted="false" />
         <EntityTypeShape EntityType="webModel.Facturas_Disponibles" Width="1.5" PointX="8.375" PointY="0.75" />
         <AssociationConnector Association="webModel.FK_mov_factura_credito_gest_cliente1" />
+        <EntityTypeShape EntityType="webModel.cheques_disponibles" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="webModel.facturas_sin_pagar" Width="1.5" PointX="8.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
