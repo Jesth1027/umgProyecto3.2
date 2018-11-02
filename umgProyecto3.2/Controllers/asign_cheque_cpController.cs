@@ -39,7 +39,7 @@ namespace PROYECTO_WEB.Controllers
         // GET: asign_cheque_cp/Create
         public ActionResult Create()
         {
-            ViewBag.serie = new SelectList(db.gest_cheque, "serie", "cuenta");
+            ViewBag.serie = new SelectList(db.cheques_disponibles, "serie", "serie");
    
             return View();
         }
@@ -58,7 +58,8 @@ namespace PROYECTO_WEB.Controllers
                 db.asignar_cheque(asign_cheque_cp.serie, asign_cheque_cp.cantidad, asign_cheque_cp.fecha, asign_cheque_cp.pago_a_orden, asign_cheque_cp.id_user);
                
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Create");
             }
 
             ViewBag.serie = new SelectList(db.gest_cheque, "serie", "cuenta", asign_cheque_cp.serie);
