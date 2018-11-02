@@ -33,6 +33,5 @@ namespace umgProyecto3._2.Models
         public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<nota_debito_cc> nota_debito_cc { get; set; }
-        public virtual gest_cliente gest_cliente { get; set; }
     }
 }

@@ -18,7 +18,6 @@ namespace umgProyecto3._2.Models
         public gest_proveedor()
         {
             this.mov_factura_pagos = new HashSet<mov_factura_pagos>();
-            this.nota_debito_cp = new HashSet<nota_debito_cp>();
         }
     
         public int codigo { get; set; }
@@ -29,7 +28,5 @@ namespace umgProyecto3._2.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mov_factura_pagos> mov_factura_pagos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<nota_debito_cp> nota_debito_cp { get; set; }
     }
 }

@@ -24,13 +24,11 @@ namespace umgProyecto3._2.Models
         public Nullable<System.DateTime> fecha { get; set; }
         public string descripcion { get; set; }
         public Nullable<int> nfactura { get; set; }
-        public Nullable<int> idempresa { get; set; }
         public Nullable<decimal> abono { get; set; }
         public Nullable<int> serie_cheque { get; set; }
         public Nullable<int> id_user { get; set; }
     
         public virtual asign_cheque_cp asign_cheque_cp { get; set; }
-        public virtual gest_proveedor gest_proveedor { get; set; }
         public virtual mov_factura_pagos mov_factura_pagos { get; set; }
         public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

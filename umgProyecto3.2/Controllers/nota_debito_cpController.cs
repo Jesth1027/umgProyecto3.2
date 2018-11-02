@@ -17,7 +17,7 @@ namespace umgProyecto3._2.Controllers
         // GET: nota_debito_cp
         public ActionResult Index()
         {
-            var nota_debito_cp = db.nota_debito_cp.Include(n => n.asign_cheque_cp).Include(n => n.gest_proveedor).Include(n => n.mov_factura_pagos).Include(n => n.usuario);
+            var nota_debito_cp = db.nota_debito_cp.Include(n => n.asign_cheque_cp).Include(n => n.mov_factura_pagos).Include(n => n.usuario);
             return View(nota_debito_cp.ToList());
         }
 
@@ -51,12 +51,11 @@ namespace umgProyecto3._2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "correlativo,fecha,descripcion,nfactura,idempresa,abono,serie_cheque,id_user")] nota_debito_cp nota_debito_cp)
+        public ActionResult Create([Bind(Include = "descripcion,nfactura,abono,serie_cheque,id_user")] nota_debito_cp nota_debito_cp)
         {
             if (ModelState.IsValid)
             {
-                buscar_correlativo_notacp_Result u = db.buscar_correlativo_notacp().FirstOrDefault();
-                nota_debito_cp.correlativo = u.correlativo + 1;
+            
 
                 DateTime Hoy = DateTime.Today;
 
@@ -64,15 +63,14 @@ namespace umgProyecto3._2.Controllers
                 nota_debito_cp.fecha = DateTime.Parse(fecha_actual);
                 nota_debito_cp.id_user = Convert.ToInt32(Session["id"]);
 
+               
 
-
-                db.insert_nota_cre(nota_debito_cp.correlativo, nota_debito_cp.fecha, nota_debito_cp.nfactura, nota_debito_cp.abono, nota_debito_cp.serie_cheque, nota_debito_cp.id_user);
+                db.insert_nota_cre( nota_debito_cp.fecha, nota_debito_cp.nfactura, nota_debito_cp.abono, nota_debito_cp.serie_cheque, nota_debito_cp.id_user);
                 db.SaveChanges();
                 return RedirectToAction("Create");
             }
 
             ViewBag.serie_cheque = new SelectList(db.asign_cheque_cp, "serie", "pago_a_orden", nota_debito_cp.serie_cheque);
-            ViewBag.idempresa = new SelectList(db.gest_proveedor, "codigo", "nombre", nota_debito_cp.idempresa);
             ViewBag.nfactura = new SelectList(db.mov_factura_pagos, "nfactura", "descripcion", nota_debito_cp.nfactura);
             ViewBag.id_user = new SelectList(db.usuario, "id", "nombre", nota_debito_cp.id_user);
             return View(nota_debito_cp);
@@ -91,7 +89,6 @@ namespace umgProyecto3._2.Controllers
                 return HttpNotFound();
             }
             ViewBag.serie_cheque = new SelectList(db.asign_cheque_cp, "serie", "pago_a_orden", nota_debito_cp.serie_cheque);
-            ViewBag.idempresa = new SelectList(db.gest_proveedor, "codigo", "nombre", nota_debito_cp.idempresa);
             ViewBag.nfactura = new SelectList(db.mov_factura_pagos, "nfactura", "descripcion", nota_debito_cp.nfactura);
             ViewBag.id_user = new SelectList(db.usuario, "id", "nombre", nota_debito_cp.id_user);
             return View(nota_debito_cp);
@@ -111,7 +108,6 @@ namespace umgProyecto3._2.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.serie_cheque = new SelectList(db.asign_cheque_cp, "serie", "pago_a_orden", nota_debito_cp.serie_cheque);
-            ViewBag.idempresa = new SelectList(db.gest_proveedor, "codigo", "nombre", nota_debito_cp.idempresa);
             ViewBag.nfactura = new SelectList(db.mov_factura_pagos, "nfactura", "descripcion", nota_debito_cp.nfactura);
             ViewBag.id_user = new SelectList(db.usuario, "id", "nombre", nota_debito_cp.id_user);
             return View(nota_debito_cp);
