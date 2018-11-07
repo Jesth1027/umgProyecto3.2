@@ -447,5 +447,7 @@ namespace umgProyecto3._2.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("insert_nota_cre", fechaParameter, nfactruaParameter, abonoParameter, serie_chequeParameter, id_userParameter);
         }
+
+        public System.Data.Entity.DbSet<umgProyecto3._2.Models.buscar_user_Result> buscar_user_Result { get; set; }
     }
 }

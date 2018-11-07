@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "umgProyecto3.2", "umgProyecto3.2\umgProyecto3.2.csproj", "{1DDE73FC-1E75-4AC4-9DE0-4EA90F3ECDC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiUmg", "ApiUmg\ApiUmg.csproj", "{563FE40E-9152-4DFD-A190-754DB1E1FBE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1DDE73FC-1E75-4AC4-9DE0-4EA90F3ECDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DDE73FC-1E75-4AC4-9DE0-4EA90F3ECDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DDE73FC-1E75-4AC4-9DE0-4EA90F3ECDC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563FE40E-9152-4DFD-A190-754DB1E1FBE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563FE40E-9152-4DFD-A190-754DB1E1FBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563FE40E-9152-4DFD-A190-754DB1E1FBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563FE40E-9152-4DFD-A190-754DB1E1FBE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
